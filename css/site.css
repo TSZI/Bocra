@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #08537b;
-    --secondary-color: #2563c0;
+    --primary-color: #2563c0;
+    --secondary-color: #ee764b;
     --dark-color: #292929;
     --white-color: #e8ebe9;
 }
@@ -28,7 +28,7 @@ h6 {
 
 main .logo {
     max-width: 700px;
-    max-height: 500px;
+    max-height: 550px;
 }
 
 footer {
