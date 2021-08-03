@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
     <head>
-        <title>App Name: A Coding Project By Troy Szatkowski</title>
+        <title>BOCRA: A Coding Project By Troy Mitchel</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -29,19 +29,19 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="app.html">The App</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="code.html">The Code</a>
+                            <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                            <a class="nav-link" target="_blank" href="https://github.com/TSZI/Bocra">Git Repo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="#">About</a>
+                            <a class="nav-link" target="_blank" href="https://tms-portfolio.netlify.app/#about-area">About</a>
                         </li>
                     </ul>
                 </div>
@@ -55,16 +55,74 @@
                 <div class="row row-cols-1 row-cols-lg-2">
                     <div class="col-lg-8">
                         <pre class="line-numbers"><code class="language-javascript">
-                            // Call Hello
-                            function HelloWorld() {
-                                alert('hello World!');
+                            // get the values from the page
+                            // starts or controller function
+                            function getValues() {
+                                // get values from the page
+                                let startValue = document.querySelector('#startValue').value;
+                                let endValue = document.querySelector('#endValue').value;
+
+                                // validate our inputs
+                                // parse into integers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    // call generateNumbers
+                                    let numbers = generateNumbers(startValue, endValue);
+
+                                    // call displayNumbers
+                                    displayNumbers(numbers);
+                                } else {
+                                    alert('You must enter integers');
+                                }
+                            }
+
+                            // generate numbers from startValue and endValue
+                            // logic functions(s)
+                            function generateNumbers(startValue, endValue) {
+                                let numbers = [];
+
+                                // get all numbers from start to end
+                                for (let i = startValue; i <= endValue; i++) {
+                                    // execute in a loop until index = end value
+                                    numbers.push(i);
+                                }
+
+                                return numbers;
+                            }
+
+                            // display the numbers and mark even numbes bold
+                            // display or view functions
+                            function displayNumbers(numbers) {
+                                let templateRows = '';
+
+                                for (let i = 0; i < numbers.length; i++) {
+                                    let number = numbers[i];
+                                    let className = 'even';
+
+                                    if (number % 2 === 0) {
+                                        className = 'even';
+                                    } else {
+                                        className = 'odd';
+                                    }
+
+                                    // This does render correctly with Prisim see the source
+                                    templateRows += `&lt;tr>&lt;td class="${className}" >${number}&lt;/td>&lt;/tr>`;
+                                }
+
+                                document.getElementById('results').innerHTML = templateRows;
                             }
                         </code></pre>
                     </div>
                     <div class="col-lg-4">
-                        <p>The Code is structured in one function.</p>
-                        <h5>Hello World</h5>
-                        <p>Hellow World is a function that displays an lert with a message of "Hello World"</p>
+                        <p>The Code is structured in several functions.</p>
+                        <h5>getValues</h5>
+                        <p>Gets the user input and validates the values. Calls the generate and display functions.</p>
+                        <h5>generateNumbers</h5>
+                        <p>Creates an array of numbers based on the user input start and end value.</p>
+                        <h5>displayNumbers</h5>
+                        <p>Displays the array of numbers in a table of rows with the even numbers bolded.</p>
                     </div>
                 </div>
             </div>
